@@ -1,0 +1,23 @@
+.cakes-list {
+    display: grid;
+    /* flex-wrap: nowrap; */
+    /* justify-content: center; */
+    /* gap: 10px 30px; */
+    grid-template-columns: 1fr 1fr 1fr;
+    place-items: center;
+    border-style: dotted;
+    align-items: center;
+    justify-content: center;
+    font-size: larger;
+
+}
+
+.cake {
+    border-style: dotted;
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    background-color: green;
+    width: 100%;
+    text-align: center;
+}

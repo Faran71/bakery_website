@@ -1,66 +1,75 @@
 import { useState } from "react";
 import Cake from "./Cake.js";
+import CakeForm from "../component/CakeForm.js";
+import cakes from "../cakes.js";
+import './CakeContainer.css'
 
 const CakeContainer = () => {
 
-    const [listOfCakes, setListOfCakes] = useState(
-		[
-			{
-				cakeName: "Victoria Sponge",
-				   ingredients: [
-					   "eggs",
-					  "butter",
-					  "sugar",
-					  "self-raising flour",
-					  "baking powder",
-					  "milk"
-				  ],
-				  price: 5,
-				   rating: 5
-			},
-			{
-				 cakeName: "Tea Loaf",
-				   ingredients: [
-					   "eggs",
-					  "oil",
-					  "dried fruit",
-					  "sugar",
-					  "self-raising flour",
-					  "strong tea",
-				  ],
-				  price: 2,
-				  rating: 3
-			},
-			{
-				 cakeName: "Carrot Cake",
-				   ingredients: [
-					"carrots",
-					  "walnuts",
-					  "oil",
-					  "cream cheese",
-					  "flour",
-					  "sugar",
-				   ],
-				   price: 8,
-				   rating: 5
-			} 
-		]		
-	)
+    const [listOfCakes, setListOfCakes] = useState(cakes);
+		// [
+		// 	{
+		// 		cakeName: "Victoria Sponge",
+		// 		   ingredients: [
+		// 			   "eggs",
+		// 			  "butter",
+		// 			  "sugar",
+		// 			  "self-raising flour",
+		// 			  "baking powder",
+		// 			  "milk"
+		// 		  ],
+		// 		  price: 5,
+		// 		   rating: 5
+		// 	},
+		// 	{
+		// 		 cakeName: "Tea Loaf",
+		// 		   ingredients: [
+		// 			   "eggs",
+		// 			  "oil",
+		// 			  "dried fruit",
+		// 			  "sugar",
+		// 			  "self-raising flour",
+		// 			  "strong tea",
+		// 		  ],
+		// 		  price: 2,
+		// 		  rating: 3
+		// 	},
+		// 	{
+		// 		 cakeName: "Carrot Cake",
+		// 		   ingredients: [
+		// 			"carrots",
+		// 			  "walnuts",
+		// 			  "oil",
+		// 			  "cream cheese",
+		// 			  "flour",
+		// 			  "sugar",
+		// 		   ],
+		// 		   price: 8,
+		// 		   rating: 5
+		// 	} 
+		// ]		
+	// )
 
-  return (
+	const addNewCake = (newCake) => {
+		const updatedCakes = [...listOfCakes, newCake];
+		setListOfCakes(updatedCakes);
+	  };
+	  
+
+
+  	return (
     <>
-        <Cake cakeName={listOfCakes[0].cakeName} 
-		ingredients={listOfCakes[0].ingredients} 
-		price={listOfCakes[0].price} 
-		rating={listOfCakes[0].rating}/>
-        <Cake cakeName={listOfCakes[1].cakeName} 
-		ingredients={listOfCakes[1].ingredients} 
-		price={listOfCakes[1].price} 
-		rating={listOfCakes[1].rating}/>
-        <Cake cakeName={listOfCakes[2].cakeName} 
-		ingredients={listOfCakes[2].ingredients} 
-		price={listOfCakes[2].price} 
-		rating={listOfCakes[2].rating}/>
+		<div className="cakes-list">
+		{listOfCakes.map((cake) => {return(
+			<div className="cake">
+			<Cake cakeName={cake.cakeName}
+			ingredients={cake.ingredients}
+			price={cake.price} 
+			rating={cake.rating}/>
+			</div>
+		)})}
+		</div>
+		<CakeForm listOfCakes={listOfCakes} addNewCake={addNewCake} />
     </>
   )
 }
